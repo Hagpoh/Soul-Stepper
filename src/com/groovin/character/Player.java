@@ -1,6 +1,4 @@
-package com.group5.character;
-
-import com.group5.character.Character;
+package com.groovin.character;
 
 import java.util.ArrayList;
 import java.util.Scanner;

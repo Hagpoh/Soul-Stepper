@@ -1,6 +1,6 @@
-package com.group5.items;
+package com.groovin.items;
 
-import com.group5.character.Player;
+import com.groovin.character.Player;
 
 import java.util.concurrent.TimeUnit;
 

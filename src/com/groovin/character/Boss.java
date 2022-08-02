@@ -1,44 +1,44 @@
-import javax.naming.Name;
+package com.groovin.character;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class CrunkDancer extends Character {
+//Boss is a character on the game
+public class Boss extends Character {
 
 
-    public CrunkDancer(String name, int health) {
+    public Boss(String name, int health) {
         super(name, health);
     }
 
+    //different int when decreasing health by an attack from other characters
+    @Override
+    public void decreaseHealth() {
+        this.health = health - randomInt(10, 25);
+    }
+
+    //Time dialogue before combat of Boss character when engaging in combat with player
     @Override
     public void beginningDialogue() throws InterruptedException {
         System.out.println(".....");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Nathan: *performs dance move 'show-off'*");
+        System.out.println("LoVibe: So you decided to show your face here again huh?");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("*The crowd roars*");
+        System.out.println("Soulstepper: You know why I'm here... I came back to take what is mine!");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.printf("Soulstepper: Hey kid, you seem to be the main attraction here.");
+        System.out.println("LoVibe: Go ahead and try Soul Stepper but your soul wasn't anywhere near mines last time.");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Nathan: Seems like it right, worked my butt of to get to this point.");
+        System.out.println("LoVibe: Perhaps you can to try to prove me wrong?");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Soulstepper: I respect that, hard work pays off.");
-        System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Nathan: You seem like you got some soul in you, I still got some time before I have to head out. You wanna face off?");
-        System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("SoulStepper: Sure, I can spare some time, plus it seems like this crowd wants to see more.");
+        System.out.println("Soulstepper: Well, let's not waste any time. Let me show you the real reason why they call me Soul Stepper..");
         TimeUnit.MILLISECONDS.sleep(2000);
         System.out.println();
-        System.out.println("Nathan: That's what I'm talking about, let's get it.");
-        TimeUnit.MILLISECONDS.sleep(1000);
         System.out.println();
         System.out.println("ALERT!!");
         System.out.println();
@@ -48,7 +48,19 @@ public class CrunkDancer extends Character {
         System.out.println();
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(1000);
-        System.out.printf("%s challenges you to a dance off", this.getName());
+        System.out.println("ALERT!!");
+        System.out.println();
+        System.out.println();
+        TimeUnit.MILLISECONDS.sleep(1000);
+        System.out.println("ALERT!!");
+        System.out.println();
+        System.out.println();
+        TimeUnit.MILLISECONDS.sleep(1000);
+        System.out.println("ALERT!!");
+        System.out.println();
+        System.out.println();
+        TimeUnit.MILLISECONDS.sleep(1000);
+        System.out.printf("The Supreme Stepper %s challenges you to a dance off", this.getName());
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(1500);
         System.out.println();
@@ -56,49 +68,47 @@ public class CrunkDancer extends Character {
         System.out.println();
         System.out.println();
     }
-
+//    //Time dialogue after combat of Boss character when engaging in combat with player
     @Override
     public void endingDialogue() throws InterruptedException {
         System.out.println(".....");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("* crowd erupts in applause *");
+        System.out.println("LoVibe: NOOOOOOOOOOOOOOOOOO!");
         System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Nathan: Woah dude, you taught me something tonight. You really don't mess around");
+        TimeUnit.MILLISECONDS.sleep(1500);
+        System.out.println("LoVibe: I thought..... I was..... Supreme?!?!");
         System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Soulstepper: Haha so I've been told");
+        TimeUnit.MILLISECONDS.sleep(1500);
+        System.out.println("Soulstepper: HA! You thought wrong bitch, now give me my damn title back");
         System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Nathan: Only other person to defeat me in a face-off of like this is that snake LoVibe. The guy made me look like a fool out here.");
+        TimeUnit.MILLISECONDS.sleep(1500);
+        System.out.println("Soulstepper: Soul has been restored.");
         System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Soulstepper: .....");
+        TimeUnit.MILLISECONDS.sleep(1500);
         System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Nathan: I've been working hard ever since to challenge him again and earn my respect back. But it seems I still have a long way to go.");
+        TimeUnit.MILLISECONDS.sleep(1500);
+        System.out.printf("You defeated %s with your soul and have regained your title as Supreme Stepper", this.getName());
         System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Soulstepper: Keep, working kid. You'll get there, and when you do I'll be there to see it. For now, I have somewhere I have to be. Peace kid.");
+        TimeUnit.MILLISECONDS.sleep(1500);
+        System.out.println("CONGRATULATIONS");
         System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Nathan: Peace.");
+        TimeUnit.MILLISECONDS.sleep(1500);
+        System.out.println("YOU WIN!");
         System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.printf("You defeated %s with your soul and can now move on.", this.getName());
-        System.out.println();
+        TimeUnit.MILLISECONDS.sleep(1500);
+        System.out.println("GAME OVER");
+        System.exit(0);
     }
-
-
+//Random selection for Dance moves for combat of the Boss character
     @Override
     public void dance(Character soulStepper, Character enemy) {
         List<String> danceMoves = new ArrayList<>(5);
-        danceMoves.add("Kill-off");
-        danceMoves.add("Chest Pop");
-        danceMoves.add("Jab");
-        danceMoves.add("Buck");
-        danceMoves.add("Get-off");
+        danceMoves.add("Dictator");
+        danceMoves.add("Show-off");
+        danceMoves.add("Cabbage Patch");
+        danceMoves.add("Almighty Push");
+        danceMoves.add("Washing Machine");
 
         int number = randomInt(0, 4);
 

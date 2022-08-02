@@ -1,8 +1,4 @@
-<<<<<<< HEAD:client/src/com/group5/gameSetup/Instruction.java
-package com.group5.gameSetup;
-=======
-
->>>>>>> origin/main:client/src/Instruction.java
+package com.groovin.gameSetup;
 
 import java.util.concurrent.TimeUnit;
 

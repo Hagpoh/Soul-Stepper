@@ -1,8 +1,8 @@
-package com.group5.gameSetup;
+package com.groovin.gameSetup;
 
-import com.group5.character.*;
-import com.group5.character.Character;
-import com.group5.location.Location;
+import com.groovin.character.*;
+import com.groovin.character.Character;
+import com.groovin.location.Location;
 
 import java.util.HashMap;
 import java.util.Map;

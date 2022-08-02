@@ -1,16 +1,16 @@
+package com.groovin.location;
 
+import com.groovin.character.Character;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Location {
     String name;
-    String description;
-    ArrayList<String> items = new ArrayList<>();
-    ArrayList<Character> enemies = new ArrayList<>();
-    HashMap<String, Location> nextLocation = new HashMap<String, Location>();
+    public String description;
+    public ArrayList<String> items = new ArrayList<>();
+    public ArrayList<Character> enemies = new ArrayList<>();
+    public HashMap<String, Location> nextLocation = new HashMap<String, Location>();
 
 
     public Location(String name, String description) {
@@ -46,15 +46,15 @@ public class Location {
         this.items = items;
     }
 
-    public void addItem(String item){
+    public void addItem(String item) {
         this.items.add(item);
     }
 
-    public void addEnemy(Character character){
+    public void addEnemy(Character character) {
         this.enemies.add(character);
     }
 
-    public void addNextLocation(String direction, Location location){
+    public void addNextLocation(String direction, Location location) {
         this.nextLocation.put(direction, location);
     }
 }

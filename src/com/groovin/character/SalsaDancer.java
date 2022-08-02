@@ -1,52 +1,41 @@
-import javax.naming.Name;
+package com.groovin.character;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class SwingDancer extends Character {
+public class SalsaDancer extends Character {
 
 
-    public SwingDancer(String name, int health) {
+    public SalsaDancer(String name, int health) {
         super(name, health);
     }
 
+    //Time dialogue before combat of SalsaDancer enemy character when engaging in combat with player
     @Override
     public void beginningDialogue() throws InterruptedException {
         System.out.println(".....");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(1500);
-        System.out.println("Jimmy: Hey you!");
+        System.out.println("Antonio: * dances *");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(1500);
-        System.out.println("Soulstepper: huh?");
+        System.out.println("* some women in the crowd faint *");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Jimmy: Yeah you, I like you shoes!");
+        System.out.println("Soulstepper: Woah, you remind me of a young me.");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Soulstepper: Ha ha, thanks alot.");
+        System.out.println("Antonio: Yes my friend, Salsa is Sexy. Salsa is Love. Salsa is Love.");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Jimmy: They call me Jimmy around here, what's your name?");
+        System.out.println("Soulstepper: I can appreciate that. Maybe you can show me a move or two and I can show you mines? ");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("SoulStepper: You can call me Soulstepper.");
-        TimeUnit.MILLISECONDS.sleep(2000);
+        System.out.println("Antonio: Oh? This sounds intriguing. Dance we shall.");
         System.out.println();
-        System.out.println("Jimmy: That's a cool name. I felt like I heard that somewhere before.... Anyways, do you swing?");
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println();
-        System.out.println("SoulStepper: No, but I do have a few moves..");
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println();
-        System.out.println("Jimmy: Ok then old timer, then show me? I need a good warmup before the Lindy competition later today.");
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println();
-        System.out.println("SoulStepper: Haha, sure. I won't hold back though.");
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println();
-        System.out.println("Jimmy: sheesh, you don't look like somebody that can make me break a sweat.");
+        System.out.println("SoulStepper: Let's do it.");
         TimeUnit.MILLISECONDS.sleep(1000);
         System.out.println();
         System.out.println("ALERT!!");
@@ -66,66 +55,59 @@ public class SwingDancer extends Character {
         System.out.println();
     }
 
+    //Time dialogue after combat of BreakDancer enemy character when engaging in combat with player
     @Override
     public void endingDialogue() throws InterruptedException {
         System.out.println(".....");
         System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Jimmy: *heavy panting* what the hell? I thought you said you had a few moves up you sleeve?");
+        TimeUnit.MILLISECONDS.sleep(1500);
+        System.out.println("* women in the crowd swoon over Soulstepper and Antonio *");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("People shouting in distance: Oh my god, that's Levon SoulStepper, the original Supreme Stepper.");
+        System.out.println("Antonio: My friend, you dance with such passion. I can feel the fire in your heart!");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Jimmy: ....... you could've told me that in the beginning instead of making me think I was going against an old man.");
+        System.out.println("Soulstepper: Yes it was electric. We should definitely dance again some time");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Soulstepper: Hahaha my apologies, I like to keep a low profile.");
+        System.out.println("Antonio: Please, consider me a friend for life.");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("Jimmy: *limps away in pain* Now, I won't be able to do the competition! ");
-        System.out.println();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.println("SoulStepper: Sorry kid.");
+        System.out.println("Soulstepper: Same to you Antonio.");
         System.out.println();
         TimeUnit.MILLISECONDS.sleep(2000);
         System.out.printf("You defeated %s with your soul and can now move on.", this.getName());
         System.out.println();
     }
 
-
+//Random selection for Dance moves for combat of the CrunkDancer character
     @Override
-    public void dance(Character soulStepper, Character enemy) throws InterruptedException {
+    public void dance(Character soulStepper, Character enemy) {
         List<String> danceMoves = new ArrayList<>(5);
-        danceMoves.add("Collegiate Shag");
-        danceMoves.add("Charleston");
-        danceMoves.add("East Coast Swing");
-        danceMoves.add("Balboa");
-        danceMoves.add("Lindy Hop");
+        danceMoves.add("Dile que no");
+        danceMoves.add("Enchufla");
+        danceMoves.add("Cubanito");
+        danceMoves.add("70 en la salsa");
+        danceMoves.add("Croqueta complicada");
 
         int number = randomInt(0, 4);
 
 
         if (number == 0) {
-            TimeUnit.MILLISECONDS.sleep(2000);
             System.out.printf("The %s hit you with a %s", getName(), danceMoves.get(0));
             soulStepper.decreaseHealth();
             System.out.println();
             System.out.printf("Soulsteppers current health is %s", soulStepper.getHealth());
-            TimeUnit.MILLISECONDS.sleep(2000);
             System.out.println();
             System.out.println();
         } else if (number == 1) {
-            TimeUnit.MILLISECONDS.sleep(2000);
             System.out.printf("The %s hit you with a %s", getName(), danceMoves.get(1));
             soulStepper.decreaseHealth();
             System.out.println();
             System.out.printf("Soulsteppers current health is %s", soulStepper.getHealth());
-            TimeUnit.MILLISECONDS.sleep(2000);
             System.out.println();
             System.out.println();
         } else if (number == 2) {
-            TimeUnit.MILLISECONDS.sleep(2000);
             System.out.printf("The %s hit you with a %s", getName(), danceMoves.get(2));
             soulStepper.decreaseHealth();
             System.out.println();

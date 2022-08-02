@@ -1,4 +1,6 @@
-package com.group5.client;
+package com.groovin.client;
+
+import com.groovin.gameSetup.Game;
 
 public class Client {
     public static void main(String[] args) throws InterruptedException {
@@ -6,6 +8,5 @@ public class Client {
         Game game = new Game();
         //calling play method from game class.
         game.play();
-
     }
 }

@@ -1,9 +1,7 @@
-package com.group5.client;
+package com.groovin.gameSetup;
 
-import com.group5.character.Player;
-import com.group5.gameSetup.GameSetup;
-import com.group5.gameSetup.Instruction;
-import com.group5.items.Items;
+import com.groovin.character.Player;
+import com.groovin.items.Items;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.nio.file.Files;
