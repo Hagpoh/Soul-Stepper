@@ -19,7 +19,8 @@ public class MainGUI {
         frame.setLayout(new GridLayout());
         frame.setLocationRelativeTo(null);
         JTextArea textArea = setTextOutput(frame);
-        JTextField inputArea = setTextInput(frame);
+        JTextField inputArea = new InputListener().jTextField;
+        frame.add(inputArea);
 
 
         frame.setVisible(true);
@@ -32,11 +33,5 @@ public class MainGUI {
         frame.add(textArea);
         frame.setVisible(true);
         return textArea;
-    }
-
-    public static JTextField setTextInput(JFrame frame) {
-        JTextField nameTextField = new JTextField();
-        frame.add(nameTextField);
-        return nameTextField;
     }
 }

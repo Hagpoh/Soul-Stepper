@@ -14,14 +14,13 @@ import java.util.Scanner;
 public class InputListener implements KeyListener {
 
     JTextField jTextField;
+    InputStream inputStream;
 
 
     public InputListener() {
         jTextField = new JTextField();
         jTextField.setBounds(20, 50, 100, 100);
         jTextField.addKeyListener(this);
-
-
     }
 
     @Override
@@ -33,15 +32,12 @@ public class InputListener implements KeyListener {
     public void keyPressed(KeyEvent e) {
         // defining a string which is fetched by the getText() method of TextArea class
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            String text = jTextField.getText();
-            InputStream inputStream = new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8));
+            inputStream = new ByteArrayInputStream(jTextField.getText().getBytes(StandardCharsets.UTF_8));
             System.setIn(inputStream);
-            // System.out.println(text);
-            Scanner sc = new Scanner(System.in);
-            String input = sc.nextLine();
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
             System.out.println(input);
         }
-
     }
 
     @Override
