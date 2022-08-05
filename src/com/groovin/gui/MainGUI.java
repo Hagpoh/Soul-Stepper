@@ -19,19 +19,24 @@ public class MainGUI {
         frame.setLayout(new GridLayout());
         frame.setLocationRelativeTo(null);
         JTextArea textArea = setTextOutput(frame);
-        JTextField inputArea = new InputListener().jTextField;
+        InputListener inputListener = new InputListener();
+        JTextField inputArea = inputListener.jTextField;
+        JLabel label = new JLabel("What would you like to do?");
+        label.setLabelFor(inputArea);
+
+        frame.add(textArea);
+        inputArea.add(label);
         frame.add(inputArea);
 
-
+        frame.pack();
         frame.setVisible(true);
     }
 
     public static JTextArea setTextOutput(JFrame frame) {
-        JTextArea textArea = new JTextArea(50, 10);
+        JTextArea textArea = new JTextArea(50, 60);
+        JScrollPane scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         PrintStream printStream = new PrintStream(new CustomOutputStream(textArea));
         System.setOut(printStream);
-        frame.add(textArea);
-        frame.setVisible(true);
         return textArea;
     }
 }

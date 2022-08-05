@@ -2,6 +2,8 @@ package com.groovin.gui;
 
 
 
+import com.groovin.gameSetup.Game;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -13,14 +15,15 @@ import java.util.Scanner;
 
 public class InputListener implements KeyListener {
 
-    JTextField jTextField;
-    InputStream inputStream;
+    public JTextField jTextField;
 
 
     public InputListener() {
         jTextField = new JTextField();
-        jTextField.setBounds(20, 50, 100, 100);
+        jTextField.setSize(100, 100);
+        jTextField.setColumns(15);
         jTextField.addKeyListener(this);
+        jTextField.setText("");
     }
 
     @Override
@@ -32,11 +35,13 @@ public class InputListener implements KeyListener {
     public void keyPressed(KeyEvent e) {
         // defining a string which is fetched by the getText() method of TextArea class
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            inputStream = new ByteArrayInputStream(jTextField.getText().getBytes(StandardCharsets.UTF_8));
-            System.setIn(inputStream);
-            Scanner scanner = new Scanner(System.in);
-            String input = scanner.nextLine();
-            System.out.println(input);
+            Game game = Game.getInstance();
+            try {
+                game.play(jTextField.getText().toLowerCase());
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            jTextField.setText("");
         }
     }
 
@@ -44,6 +49,5 @@ public class InputListener implements KeyListener {
     public void keyReleased(KeyEvent e) {
 
     }
-
 }
 
