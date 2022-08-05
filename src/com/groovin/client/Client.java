@@ -12,8 +12,8 @@ public class Client {
     public static void main(String[] args) throws InterruptedException {
         MainGUI.createAndShowGUI();
         //initiating game class
-        Game game = new Game();
+        Game game = Game.getInstance();
         //calling play method from game class.
-        game.play();
+        game.instructions();
     }
 }

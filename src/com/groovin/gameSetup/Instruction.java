@@ -19,7 +19,7 @@ public class Instruction {
                 "little house of the prairie.");
         TimeUnit.MILLISECONDS.sleep(1500);
         System.out.println();
-        System.out.println("You're mission is simple..");
+        System.out.println("Your mission is simple...");
         TimeUnit.MILLISECONDS.sleep(1500);
         System.out.println();
         System.out.println("Find LoVibe.");

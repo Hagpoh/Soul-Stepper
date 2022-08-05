@@ -58,7 +58,6 @@ public class Player extends Character {
 
     @Override
     public void dance(Character enemy, Character soulStepper) throws InterruptedException {
-        Scanner scanner = new Scanner(System.in);
 
         enemy.beginningDialogue();
 
@@ -75,9 +74,8 @@ public class Player extends Character {
                 System.out.println();
 
 
-                String userChoice = scanner.nextLine();
-
-                switch (userChoice) {
+                String choice = "1";
+                switch (choice) {
                     case "1":
                         System.out.println("Soulstepper hit em with the Hustle!");
                         System.out.println();
@@ -146,7 +144,6 @@ public class Player extends Character {
     // player dance method created to be used specifically against the boss
 
     public void bossDance(Character enemy, Character soulStepper) throws InterruptedException {
-        Scanner scanner = new Scanner(System.in);
 
         enemy.beginningDialogue();
 
@@ -163,9 +160,8 @@ public class Player extends Character {
                 System.out.println();
 
 
-                String userChoice = scanner.nextLine();
-
-                switch (userChoice) {
+                String choice = "1";
+                switch (choice) {
                     case "1":
                         System.out.println("Soulstepper hit em with the Hustle!");
                         System.out.println();
