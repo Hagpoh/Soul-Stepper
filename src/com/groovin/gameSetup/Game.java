@@ -2,8 +2,10 @@ package com.groovin.gameSetup;
 
 import com.groovin.character.Player;
 import com.groovin.gui.InputListener;
+import com.groovin.items.HealthKit;
 import com.groovin.items.Items;
 
+import java.awt.event.HierarchyBoundsAdapter;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -11,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import com.google.gson.Gson;
+import com.groovin.items.MJJacket;
 
 public class Game {
 
@@ -27,7 +30,13 @@ public class Game {
 
     GameSetup gameSetup = new GameSetup();
     Player soulStepper = new Player("SoulStepper", 100);
-    Items item = new Items();
+    //Items item = new Items();
+
+    HealthKit healthKit = new HealthKit().getHealthKit();
+    MJJacket mjJacket = new MJJacket().getMJJacket();
+
+
+
 
     private Game() {
 
@@ -81,7 +90,7 @@ public class Game {
         } else if (use.contains(arrayChoice[0])) {
             if (soulStepper.inventory.contains(arrayChoice[1])) {
                 soulStepper.removeItem(arrayChoice[1]);
-                item.useItem(arrayChoice[1], soulStepper);
+                mjJacket.useItem(arrayChoice[1], soulStepper);
             }
         } else if (view.contains(arrayChoice[0])) {
             switch (arrayChoice[1]) {
