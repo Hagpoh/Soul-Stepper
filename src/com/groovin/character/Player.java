@@ -50,8 +50,8 @@ public class Player extends Character {
 
     // outputs a string with the players current health
 
-    public void currentHealth() {
-        System.out.println("Soulsteppers current health is " + this.getHealth());
+    public String currentHealth() {
+        return "Soulsteppers current health is " + this.getHealth();
     }
 
     // players dance method which takes the current enemy and the current player object
