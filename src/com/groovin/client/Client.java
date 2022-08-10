@@ -1,19 +1,14 @@
 package com.groovin.client;
 
 import com.groovin.gameSetup.Game;
-import com.groovin.gui.MainGUI;
-
-import javax.swing.*;
-import java.io.ByteArrayInputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
+import com.groovin.gui.GameGUI;
 
 public class Client {
     public static void main(String[] args) throws InterruptedException {
-        MainGUI.createAndShowGUI();
         //initiating game class
+        GameGUI gui = GameGUI.getInstance();
         Game game = Game.getInstance();
         //calling play method from game class.
-        game.instructions();
+        game.play();
     }
 }

@@ -1,12 +1,18 @@
 package com.groovin.gui;
 
+import com.groovin.character.Player;
+import com.groovin.gameSetup.Game;
+
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
+import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.PrintStream;
 
-class GameGUI extends JFrame {
+public class GameGUI extends JFrame {
 
     private JPanel mainPanel;
-    private JTextArea outputArea;
+    public JTextArea outputArea;
     private JTextField inputArea;
     private JLabel inputLabel;
     private JLabel titlePicture;
@@ -16,7 +22,11 @@ class GameGUI extends JFrame {
     private JButton submitButton;
     private JLabel map;
 
-    public GameGUI() {
+    private String input = "";
+
+    private static GameGUI guiInstance = null;
+
+    private GameGUI() {
         //Setting main content
         setContentPane(mainPanel);
         setTitle("Soul Stepper");
@@ -30,17 +40,40 @@ class GameGUI extends JFrame {
         ImageIcon mapIcon = new ImageIcon(GUIHelper.getImage("/map.jpg"));
         map.setIcon(mapIcon);
 
+        PrintStream printStream = new PrintStream(new CustomOutputStream(outputArea));
+        System.setOut(printStream);
+
+        //Set up our event listener for our button
+        submitButton.addActionListener(e -> {
+            input = inputArea.getText();
+            inputArea.setText("");
+            setOutput(input);
+            synchronized (Game.class) {
+                Game.class.notifyAll();
+            }
+            synchronized (Player.class) {
+                Player.class.notifyAll();
+            }
+        });
 
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    public void setOutput(String output) {
-        outputArea.append("\n" + output);
+    public static GameGUI getInstance() {
+        if (guiInstance == null) {
+            guiInstance = new GameGUI();
+        }
+        return guiInstance;
     }
 
-    public static void main(String[] args) {
-        GameGUI gui = new GameGUI();
+    public void setOutput(String output) {
+        outputArea.append("\n" + output);
+        outputArea.setCaretPosition(outputArea.getDocument().getLength());
+    }
+
+    public String getInput() {
+        return input;
     }
 }
