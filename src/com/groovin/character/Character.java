@@ -42,9 +42,4 @@ public abstract class Character {
     public abstract String getName();
 
     public abstract int getHealth();
-
-
-
-
-
 }

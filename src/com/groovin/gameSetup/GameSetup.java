@@ -88,10 +88,8 @@ public class GameSetup {
     public void look(Location currentLocation, String direction) {
         if (currentLocation.nextLocation.keySet().contains(direction)) {
             System.out.println(currentLocation.nextLocation.get(direction).description);
-            System.out.println();
         } else {
             System.out.println("There's nothing of interest there.");
-            System.out.println();
         }
     }
 
@@ -99,10 +97,8 @@ public class GameSetup {
     public void go(Location currentLocation, String direction) {
         if (currentLocation.nextLocation.keySet().contains(direction)) {
             this.currentLocation = currentLocation.nextLocation.get(direction);
-            System.out.println();
         } else {
             System.out.println("You can't go that way.");
-            System.out.println();
         }
     }
 //It would remove an item from array since with another method the Item would be placed on Inventory

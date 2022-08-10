@@ -36,19 +36,19 @@
       <component id="5df6b" class="javax.swing.JTextArea" binding="outputArea">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="500" height="500"/>
-            <preferred-size width="336" height="25"/>
-            <maximum-size width="500" height="500"/>
+            <minimum-size width="600" height="600"/>
+            <preferred-size width="600" height="600"/>
+            <maximum-size width="700" height="700"/>
           </grid>
         </constraints>
         <properties>
           <background color="-13485752"/>
-          <columns value="60"/>
+          <columns value="70"/>
           <editable value="false"/>
           <foreground color="-1"/>
-          <lineWrap value="false"/>
-          <rows value="50"/>
-          <text value="This is where all the game text will go."/>
+          <lineWrap value="true"/>
+          <rows value="70"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="db6fe" class="javax.swing.JTextArea" binding="statusOutput">
