@@ -24,11 +24,10 @@ public class Game {
     ArrayList<String> use = new ArrayList<>(Arrays.asList("use", "utilize", "operate"));
     ArrayList<String> view = new ArrayList<>(Arrays.asList("check", "current"));
 
-    String choice;
+    public String choice;
 
     private static Game gameInstance = null;
 
-    GameGUI gui = GameGUI.getInstance();
 
     private Game() {
 
@@ -61,8 +60,6 @@ public class Game {
             synchronized (Game.class) {
                 Game.class.wait();
             }
-            gui.outputArea.setText("");
-            String choice = gui.getInput();
             String[] arrayChoice = choice.split(" ", 2);
             if (look.contains(arrayChoice[0])) {
                 gameSetup.look(gameSetup.currentLocation, arrayChoice[1]);
