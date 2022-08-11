@@ -2,11 +2,9 @@ package com.groovin.gui;
 
 import com.groovin.character.Player;
 import com.groovin.gameSetup.Game;
+import com.groovin.gameSetup.SimpleAudioPlayer;
 
 import javax.swing.*;
-import javax.swing.text.DefaultCaret;
-import java.awt.*;
-import java.awt.event.ActionListener;
 import java.io.PrintStream;
 
 public class GameGUI extends JFrame {
@@ -21,12 +19,17 @@ public class GameGUI extends JFrame {
     private JLabel gameTextTitle;
     private JButton submitButton;
     private JLabel map;
+    private JButton playButton;
+    private JButton pauseButton;
+    private JButton restartButton;
+    private JButton resumeButton;
 
     private String input = "";
 
     private static GameGUI guiInstance = null;
+    private SimpleAudioPlayer audioPlayer = new SimpleAudioPlayer("/musicfiles/The Truth - Anno Domini Beats.wav");
 
-    private GameGUI() {
+    private GameGUI()  {
         //Setting main content
         setContentPane(mainPanel);
         setTitle("Soul Stepper");
@@ -37,13 +40,29 @@ public class GameGUI extends JFrame {
         titlePicture.setIcon(titleIcon);
 
         //Setting map icon with a picture icon
-        ImageIcon mapIcon = new ImageIcon(GUIHelper.getImage("/map.jpg"));
+        ImageIcon mapIcon = new ImageIcon(GUIHelper.getImage("/newmap.jpg"));
         map.setIcon(mapIcon);
 
         PrintStream printStream = new PrintStream(new CustomOutputStream(outputArea));
         System.setOut(printStream);
 
         //Set up our event listener for our button
+        playButton.addActionListener(e ->{
+            audioPlayer.play();
+        });
+        pauseButton.addActionListener(e ->{
+            audioPlayer.pause();
+        });
+
+        /*resumeButton.addActionListener(e ->{
+            audioPlayer.resumeAudio();
+        });
+        restartButton.addActionListener(e ->{
+            audioPlayer.resetAudioStream();
+        });
+
+         */
+
         submitButton.addActionListener(e -> {
             input = inputArea.getText();
             inputArea.setText("");
@@ -56,12 +75,14 @@ public class GameGUI extends JFrame {
             }
         });
 
+
+
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    public static GameGUI getInstance() {
+    public static GameGUI getInstance()  {
         if (guiInstance == null) {
             guiInstance = new GameGUI();
         }
