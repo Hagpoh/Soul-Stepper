@@ -14,8 +14,6 @@ public class GameGUI extends JFrame {
     private JTextField inputArea;
     private JLabel inputLabel;
     private JLabel titlePicture;
-    private JTextArea statusOutput;
-    private JLabel statusTitle;
     private JLabel gameTextTitle;
     private JButton submitButton;
     private JLabel map;
@@ -27,9 +25,12 @@ public class GameGUI extends JFrame {
     private String input = "";
 
     private static GameGUI guiInstance = null;
-    private SimpleAudioPlayer audioPlayer = new SimpleAudioPlayer("/musicfiles/The Truth - Anno Domini Beats.wav");
+    private SimpleAudioPlayer audioPlayer;
+
+    Game game = Game.getInstance();
 
     private GameGUI()  {
+        audioPlayer = new SimpleAudioPlayer("/musicfiles/The Truth - Anno Domini Beats.wav");
         //Setting main content
         setContentPane(mainPanel);
         setTitle("Soul Stepper");
@@ -40,7 +41,7 @@ public class GameGUI extends JFrame {
         titlePicture.setIcon(titleIcon);
 
         //Setting map icon with a picture icon
-        ImageIcon mapIcon = new ImageIcon(GUIHelper.getImage("/newmap.jpg"));
+        ImageIcon mapIcon = new ImageIcon(GUIHelper.getImage("/map.png"));
         map.setIcon(mapIcon);
 
         PrintStream printStream = new PrintStream(new CustomOutputStream(outputArea));
@@ -54,19 +55,12 @@ public class GameGUI extends JFrame {
             audioPlayer.pause();
         });
 
-        /*resumeButton.addActionListener(e ->{
-            audioPlayer.resumeAudio();
-        });
-        restartButton.addActionListener(e ->{
-            audioPlayer.resetAudioStream();
-        });
-
-         */
-
         submitButton.addActionListener(e -> {
             input = inputArea.getText();
             inputArea.setText("");
             setOutput(input);
+            outputArea.setText("");
+            game.choice = input;
             synchronized (Game.class) {
                 Game.class.notifyAll();
             }
