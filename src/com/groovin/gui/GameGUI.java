@@ -3,6 +3,7 @@ package com.groovin.gui;
 import com.groovin.character.Player;
 import com.groovin.gameSetup.Game;
 import com.groovin.gameSetup.SimpleAudioPlayer;
+import javax.swing.event.*;
 
 import javax.swing.*;
 import java.io.PrintStream;
@@ -19,6 +20,7 @@ public class GameGUI extends JFrame {
     private JLabel map;
     private JButton playButton;
     private JButton pauseButton;
+    private JSlider superSlide;
     private JButton restartButton;
     private JButton resumeButton;
 
@@ -30,6 +32,7 @@ public class GameGUI extends JFrame {
     Game game = Game.getInstance();
 
     private GameGUI()  {
+
         audioPlayer = new SimpleAudioPlayer("/musicfiles/The Truth - Anno Domini Beats.wav");
         //Setting main content
         setContentPane(mainPanel);
@@ -74,6 +77,15 @@ public class GameGUI extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
+        superSlide.setInverted(false);
+        superSlide.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                audioPlayer.currentVolume = superSlide.getValue();
+                audioPlayer.fc.setValue(audioPlayer.currentVolume);
+            }
+        });
     }
 
     public static GameGUI getInstance()  {
@@ -91,4 +103,8 @@ public class GameGUI extends JFrame {
     public String getInput() {
         return input;
     }
+
+
+
+
 }
