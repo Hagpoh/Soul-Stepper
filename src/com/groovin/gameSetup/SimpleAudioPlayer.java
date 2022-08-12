@@ -2,17 +2,18 @@ package com.groovin.gameSetup;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpCookie;
 import java.util.Scanner;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
 
 public class SimpleAudioPlayer {
+    public float currentVolume = 0;
+    public float previousVolume = 0;
+    public FloatControl fc;
     Long currentFrame;
     Clip clip;
+
 
     // current status of clip
     String status = "play";
@@ -36,6 +37,7 @@ public class SimpleAudioPlayer {
             clip.open(audioInputStream);
 
             clip.loop(Clip.LOOP_CONTINUOUSLY);
+            fc = (FloatControl)clip.getControl((FloatControl.Type.MASTER_GAIN));
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
