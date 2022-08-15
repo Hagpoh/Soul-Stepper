@@ -1,7 +1,9 @@
 package com.groovin.gameSetup;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpCookie;
 import java.util.Scanner;
 
@@ -14,21 +16,20 @@ public class SimpleAudioPlayer {
     Long currentFrame;
     Clip clip;
 
-
     // current status of clip
     String status = "play";
     String musicFile = "/musicfiles/The Truth - Anno Domini Beats.wav";
 
     AudioInputStream audioInputStream;
 
-
     // constructor to initialize streams and clip
     public SimpleAudioPlayer(String musicFile) {
         // create AudioInputStream object
         this.musicFile = musicFile;
         try {
-            audioInputStream =
-                    AudioSystem.getAudioInputStream(SimpleAudioPlayer.class.getResourceAsStream("/musicfiles/The Truth - Anno Domini Beats.wav"));
+            InputStream audioSrc = getClass().getResourceAsStream(musicFile);
+            InputStream bufferedIn = new BufferedInputStream(audioSrc);
+            audioInputStream = AudioSystem.getAudioInputStream(bufferedIn);
 
             // create clip reference
             clip = AudioSystem.getClip();
@@ -37,7 +38,7 @@ public class SimpleAudioPlayer {
             clip.open(audioInputStream);
 
             clip.loop(Clip.LOOP_CONTINUOUSLY);
-            fc = (FloatControl)clip.getControl((FloatControl.Type.MASTER_GAIN));
+            fc = (FloatControl) clip.getControl((FloatControl.Type.MASTER_GAIN));
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -46,9 +47,6 @@ public class SimpleAudioPlayer {
             e.printStackTrace();
         }
     }
-
-
-
 
     // Method to play the audio
     public void play() {
@@ -70,7 +68,7 @@ public class SimpleAudioPlayer {
     }
 
     // Method to resume the audio
-    public void resumeAudio()  {
+    public void resumeAudio() {
         if (status.equals("play")) {
             return;
         }
@@ -81,7 +79,7 @@ public class SimpleAudioPlayer {
     }
 
     // Method to restart the audio
-    public void restart(){
+    public void restart() {
         clip.stop();
         clip.close();
         resetAudioStream();
@@ -91,7 +89,7 @@ public class SimpleAudioPlayer {
     }
 
     // Method to stop the audio
-    public void stop(){
+    public void stop() {
         currentFrame = 0L;
         clip.stop();
         clip.close();
@@ -101,9 +99,11 @@ public class SimpleAudioPlayer {
 
 
     // Method to reset audio stream
-    public void resetAudioStream(){
+    public void resetAudioStream() {
         try {
-            audioInputStream =   AudioSystem.getAudioInputStream(SimpleAudioPlayer.class.getResourceAsStream("/musicfiles/Down With Your Getup - Mini Vandals.wav"));
+            InputStream audioSrc = getClass().getResourceAsStream(musicFile);
+            InputStream bufferedIn = new BufferedInputStream(audioSrc);
+            audioInputStream = AudioSystem.getAudioInputStream(bufferedIn);
             clip.open(audioInputStream);
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (UnsupportedAudioFileException e) {
@@ -114,8 +114,4 @@ public class SimpleAudioPlayer {
             e.printStackTrace();
         }
     }
-
-
-
-
 }
