@@ -3,6 +3,7 @@ package com.groovin.gui;
 import com.groovin.character.Player;
 import com.groovin.gameSetup.Game;
 import com.groovin.gameSetup.SimpleAudioPlayer;
+
 import javax.swing.event.*;
 
 import javax.swing.*;
@@ -31,7 +32,7 @@ public class GameGUI extends JFrame {
 
     Game game = Game.getInstance();
 
-    private GameGUI()  {
+    private GameGUI() {
 
         audioPlayer = new SimpleAudioPlayer("/musicfiles/The Truth - Anno Domini Beats.wav");
         //Setting main content
@@ -47,14 +48,15 @@ public class GameGUI extends JFrame {
         ImageIcon mapIcon = new ImageIcon(GUIHelper.getImage("/map.png"));
         map.setIcon(mapIcon);
 
+        //Setting the custom output stream to redirect the console to the GUI text box
         PrintStream printStream = new PrintStream(new CustomOutputStream(outputArea));
         System.setOut(printStream);
 
         //Set up our event listener for our button
-        playButton.addActionListener(e ->{
+        playButton.addActionListener(e -> {
             audioPlayer.play();
         });
-        pauseButton.addActionListener(e ->{
+        pauseButton.addActionListener(e -> {
             audioPlayer.pause();
         });
 
@@ -71,13 +73,6 @@ public class GameGUI extends JFrame {
                 Player.class.notifyAll();
             }
         });
-
-
-
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
-
         superSlide.setInverted(false);
         superSlide.addChangeListener(new ChangeListener() {
             @Override
@@ -86,9 +81,14 @@ public class GameGUI extends JFrame {
                 audioPlayer.fc.setValue(audioPlayer.currentVolume);
             }
         });
+
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+
     }
 
-    public static GameGUI getInstance()  {
+    public static GameGUI getInstance() {
         if (guiInstance == null) {
             guiInstance = new GameGUI();
         }
@@ -103,8 +103,4 @@ public class GameGUI extends JFrame {
     public String getInput() {
         return input;
     }
-
-
-
-
 }
