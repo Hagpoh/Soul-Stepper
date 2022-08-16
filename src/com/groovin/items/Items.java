@@ -16,21 +16,16 @@ public class Items {
                 player.useHealthKit();
                 System.out.println("....");
                 TimeUnit.MILLISECONDS.sleep(1000);
-                System.out.println();
                 TimeUnit.MILLISECONDS.sleep(1000);
                 player.currentHealth();
-                System.out.println();
                 break;
             case "mj jacket":
                 player.setHealth(300);
                 System.out.println("....");
                 TimeUnit.MILLISECONDS.sleep(1000);
-                System.out.println();
                 System.out.println("MJ's soul now flows through you and you feel invincible ");
                 TimeUnit.MILLISECONDS.sleep(1000);
-                System.out.println();
                 System.out.println("Soul Steppers health is now at " + player.getHealth());
-                System.out.println();
                 break;
         }
     }
